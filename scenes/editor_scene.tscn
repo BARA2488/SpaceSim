@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dmydjbd48qm3l"]
+
+[ext_resource type="Script" uid="uid://bcw4o2tng24qr" path="res://blocks/PartTester.cs" id="1_f2nr1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iymsf"]
+load_path = "res://.godot/imported/a_block.png-7c8947c5d305fedc8e25ba16c2cc515a.ctex"
+
+[node name="editorScene" type="Node2D" unique_id=1152635786]
+script = ExtResource("1_f2nr1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1003578383]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=839964751]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control" unique_id=791821044]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "start
+"
+
+[node name="cursor" type="Sprite2D" parent="." unique_id=7470500]
+modulate = Color(1, 1, 1, 0.49803922)
+texture = SubResource("CompressedTexture2D_iymsf")

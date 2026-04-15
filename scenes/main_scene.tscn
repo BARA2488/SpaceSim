@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b024hafsrs6a2"]
+
+[ext_resource type="PackedScene" uid="uid://cmb6s1rd35c0c" path="res://blocks/a_block/a_block.tscn" id="1_pw63i"]
+[ext_resource type="PackedScene" uid="uid://bc72m6cwc8ik2" path="res://blocks/b_block/b_block.tscn" id="2_7ykc4"]
+
+[node name="MainScene" type="Node2D" unique_id=2101890028]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=861065027]
+
+[node name="ABlock" parent="." unique_id=1021065294 instance=ExtResource("1_pw63i")]
+position = Vector2(-24, 1)
+
+[node name="b_block" parent="." unique_id=1700393182 instance=ExtResource("2_7ykc4")]
+position = Vector2(8, 1)
