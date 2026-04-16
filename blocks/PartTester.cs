@@ -21,7 +21,7 @@ public partial class PartTester : Node
         
     }
     private void AddPart(string type, int x, int y)
-    {
+    {   /*
         //проверка занятости клетки
         if(Grid[x, y] != null){Print($"Error, the {type} cannot be added, because the cell {x} {y} is busy "); return;}
 
@@ -43,6 +43,7 @@ public partial class PartTester : Node
         Grid[x, y] = p;
 
         Print($"Part added: {p.Type}");
+        */
     }
 
     private void PartsList()

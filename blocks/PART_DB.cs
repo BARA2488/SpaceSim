@@ -4,23 +4,39 @@ using System.Collections.Generic;
 
 public partial class PART_DB
 {
-    public static Dictionary<string, Dictionary<string, float>> Data =
-    new()
+    public float Mass;
+    public float FuelCapacity;
+    public float Thrust;
+    public string TexturePath;
+    //public float FuelAmount;
+
+    public static Dictionary<string, PART_DB> Data = new()
     {
         {
-            "fuel_tank", new  Dictionary<string, float>
+            "fuel_tank", new PART_DB
             {
-                { "mass", 1.0f },
-                { "fuel_capacity", 50f },
-                { "thrust", 0f}
+                Mass = 1.0f,
+                FuelCapacity = 50f,
+                Thrust = 0f,
+                TexturePath = "res://PartsTextures/fuel_tank.png"
             }
         },
         {
-            "engine", new Dictionary<string, float>
+            "engine", new PART_DB
             {
-                { "mass", 0.5f },
-                { "fuel_capacity", 0f },
-                { "thrust", 20f}
+                Mass = 1.0f,
+                FuelCapacity = 50f,
+                Thrust = 0f,
+                TexturePath = "res://PartsTextures/engine.png"
+            }
+        },
+        {
+            "cockpit", new PART_DB
+            {
+                Mass = 1.0f,
+                FuelCapacity = 0f,
+                Thrust = 0f,
+                TexturePath = "res://PartsTextures/Cockpit.png"
             }
         }
     };

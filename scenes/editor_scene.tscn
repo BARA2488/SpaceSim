@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://dmydjbd48qm3l"]
 
-[ext_resource type="Script" uid="uid://bcw4o2tng24qr" path="res://blocks/PartTester.cs" id="1_f2nr1"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iymsf"]
-load_path = "res://.godot/imported/a_block.png-7c8947c5d305fedc8e25ba16c2cc515a.ctex"
+[ext_resource type="Script" uid="uid://cdfaxgd2ihlgi" path="res://scenes/EditorScene.cs" id="1_iymsf"]
+[ext_resource type="Texture2D" uid="uid://7qcc2tjngvp3" path="res://UiTexture/cursor_texture.png" id="2_iymsf"]
+[ext_resource type="Texture2D" uid="uid://ukvrli5yakcb" path="res://UiTexture/ramka.png" id="2_npaab"]
+[ext_resource type="Texture2D" uid="uid://b0uygyaxa7sr3" path="res://PartsTextures/Cockpit.png" id="3_njtwn"]
+[ext_resource type="Texture2D" uid="uid://dpmyna6xco23" path="res://PartsTextures/fuel_tank.png" id="4_mrhsp"]
+[ext_resource type="Texture2D" uid="uid://cearqbvgsivwo" path="res://PartsTextures/engine.png" id="5_ew6pk"]
+[ext_resource type="AudioStream" uid="uid://vnbiic1kpe0w" path="res://UiTexture/навелся на кнопку.mp3" id="7_mrhsp"]
+[ext_resource type="AudioStream" uid="uid://bitj5hvmxd6pc" path="res://UiTexture/выбрал.mp3" id="8_ew6pk"]
 
 [node name="editorScene" type="Node2D" unique_id=1152635786]
-script = ExtResource("1_f2nr1")
+script = ExtResource("1_iymsf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1003578383]
 
@@ -32,6 +36,93 @@ grow_vertical = 0
 text = "start
 "
 
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control" unique_id=803783484]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -32.0
+offset_right = 53.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 8
+
+[node name="Panel" type="TextureRect" parent="CanvasLayer/Control/GridContainer" unique_id=1333347588]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_npaab")
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Control/GridContainer/Panel" unique_id=1036515575]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_njtwn")
+
+[node name="Panel2" type="TextureRect" parent="CanvasLayer/Control/GridContainer" unique_id=2052224350]
+layout_mode = 2
+texture = ExtResource("2_npaab")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/GridContainer/Panel2" unique_id=1734152937]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_mrhsp")
+
+[node name="Panel3" type="TextureRect" parent="CanvasLayer/Control/GridContainer" unique_id=1147671611]
+layout_mode = 2
+texture = ExtResource("2_npaab")
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Control/GridContainer/Panel3" unique_id=43325404]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_ew6pk")
+
 [node name="cursor" type="Sprite2D" parent="." unique_id=7470500]
 modulate = Color(1, 1, 1, 0.49803922)
-texture = SubResource("CompressedTexture2D_iymsf")
+texture = ExtResource("2_iymsf")
+
+[node name="mouse_entered" type="AudioStreamPlayer" parent="." unique_id=86077186]
+stream = ExtResource("7_mrhsp")
+
+[node name="button_pressed" type="AudioStreamPlayer" parent="." unique_id=337499179]
+stream = ExtResource("8_ew6pk")
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_create_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/GridContainer/Panel/TextureButton2" to="." method="_on_cockpit_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/Panel/TextureButton2" to="." method="_on_cockpit_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/GridContainer/Panel2/TextureButton" to="." method="_on_fueltank_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/Panel2/TextureButton" to="." method="_on_fueltank_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/GridContainer/Panel3/TextureButton3" to="." method="_on_engine_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/Panel3/TextureButton3" to="." method="_on_engine_pressed"]

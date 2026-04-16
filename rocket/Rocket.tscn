@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c6tsryfuqwpva"]
+
+[ext_resource type="Script" uid="uid://dcan031ytfwku" path="res://rocket/Rocket.cs" id="1_670hv"]
+[ext_resource type="Texture2D" uid="uid://dpmyna6xco23" path="res://PartsTextures/fuel_tank.png" id="2_pcf4k"]
+
+[node name="Rocket" type="RigidBody2D" unique_id=1817395521]
+script = ExtResource("1_670hv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=784259289]
+position = Vector2(-677.5, -633.50006)
+scale = Vector2(67.53125, 55.468754)
+texture = ExtResource("2_pcf4k")

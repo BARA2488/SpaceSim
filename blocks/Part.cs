@@ -10,4 +10,17 @@ public partial class Part : Resource
     public float FuelCapacity { get; set; }
     public float FuelAmount { get; set; }
     public float Thrust { get; set; }
+    public string TexturePath { get; set; }
+
+    public Part(string type)
+    {
+        Type = type;
+
+        var data = PART_DB.Data[type];
+        Mass = data.Mass;
+        FuelCapacity = data.FuelCapacity;
+        Thrust = data.Thrust;
+        FuelAmount = data.FuelCapacity;
+        TexturePath = data.TexturePath;
+    }
 }
