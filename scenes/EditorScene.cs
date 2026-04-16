@@ -29,6 +29,9 @@ public partial class EditorScene : Node2D
     public Part[,] Grid = new Part[40, 40];
     private Vector2 placePosition;
 
+    //самая нижняя деталь корабля для корректного спавна в мире
+    public int minPartPos = 999;
+
     public override void _Ready()
     {
 
@@ -93,8 +96,12 @@ public partial class EditorScene : Node2D
 
     public PackedScene BuildShipScene()
     {
-        var shipRoot = new Rocket();
+        var shipRoot = GD.Load<PackedScene>("res://rocket/Rocket.tscn").Instantiate<RigidBody2D>();
         shipRoot.Name = "Ship";
+        //shipRoot.Owner = shipRoot;
+
+        int minX = 9999;
+        int minY = 9999;
 
         for(int x = 0; x < width; x++)
         {
@@ -104,6 +111,11 @@ public partial class EditorScene : Node2D
                 if(part == null)
                     //GD.Print("Place part error");
                     continue;
+                if(Grid[x, y] != null)
+                {
+                    if(x < minX){minX = x;}
+                    if(y < minY){minY = y;}
+                }
                 
                 var data = PART_DB.Data[part.Type];
 
@@ -112,21 +124,38 @@ public partial class EditorScene : Node2D
                 var tex = GD.Load<Texture2D>(data.TexturePath);
                 sprite.Texture = tex;
                 Print($"Texture = {tex}");
-                sprite.Position = new Vector2(x * 32, y * 32);
+                sprite.Position = new Vector2((x - minX) * 32, (y - minY )* 32);
                 shipRoot.AddChild(sprite);
+                sprite.Owner = shipRoot;
 
                 var col = new CollisionShape2D();
                 col.Shape = new RectangleShape2D() {Size = new Vector2(32,32)};
                 col.Position = sprite.Position;
                 shipRoot.AddChild(col);
+                col.Owner = shipRoot;
                 //GD.Print("Place part error");
             }
+
+            
         }
+
+        //поиск самой нижней детали корабля для корректного спавна в мире
+            for(int x = 0; x < width; x++)
+            {
+                for(int y = 0; y < height; y++)
+                {
+                   if(Grid[x,y] != null)
+                   {
+                        minPartPos = Math.Min(minPartPos, y);
+                   }
+                }
+            }
 
         var result = new PackedScene();
         result.Pack(shipRoot);
         Print("Rocket Created");
-        Print($"{shipRoot.GetChildCount()}");
+        Print($"Кол-во деталей в редакторе: {shipRoot.GetChildCount()}");
+        Print($"minPartPos: {minPartPos}");
 
         return result;
     }
@@ -171,7 +200,7 @@ public partial class EditorScene : Node2D
     {
         var shipScene = BuildShipScene();
         GameManager.Instance.StartGame(shipScene);
-        GD.Print($"Editor" + shipScene.Instantiate().GetChildCount());
+        GD.Print($"Во время нажатия кнопки вызывающей StartGame: " + shipScene.Instantiate().GetChildCount());
     }
     public static String Print(string word)
     {

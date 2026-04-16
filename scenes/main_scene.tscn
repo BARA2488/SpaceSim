@@ -6,13 +6,14 @@
 script = ExtResource("1_w2twt")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=252678075]
+position = Vector2(0, 227)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1719803782]
-polygon = PackedVector2Array(-244, -1, 260, -1, 260, 175, -243, 175)
+polygon = PackedVector2Array(-1111, 40, -168, 1, 368, 3, 1308, 90, 1329, 328, -1121, 340)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=2123736376]
-color = Color(0, 0.43529412, 0.101960786, 1)
-polygon = PackedVector2Array(-248, 0, 264, 1, 260, 175, -252, 175)
+color = Color(0.28395098, 0.44537252, 0.32282847, 1)
+polygon = PackedVector2Array(-1267, 48, -937, 34, -503, 17, -387, 3, -329, 15, -237, -4, -128, 1, 169, -4, 306, -1, 372, -6, 556, 20, 735, 34, 961, 60, 1306, 90, 1313, 577, -1311, 577)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=828058260]
 position = Vector2(0, 1)
@@ -21,6 +22,3 @@ polygon = PackedVector2Array(-168, -2, -140, -21, 138, -21, 173, -1)
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D2" unique_id=2028707102]
 color = Color(0.47788018, 0.47788012, 0.47788012, 1)
 polygon = PackedVector2Array(-168, -2, 172, -1, 138, -21, -139, -21)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=316378071]
-zoom = Vector2(0.1, 0.1)
